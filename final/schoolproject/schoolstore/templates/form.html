@@ -1,0 +1,316 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Colorlib Listed Directory Template</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="{% static 'https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,900' %}" rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/animate.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+
+    <link rel="stylesheet" href="{% static 'fonts/ionicons/css/ionicons.min.css' %}">
+    <link rel="stylesheet" href="{% static 'fonts/fontawesome/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'fonts/flaticon/font/flaticon.css' %}">
+
+    <!-- Theme Style -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+      <link rel="stylesheet" href="{% static 'css/fb.css' %}" type="text/css">
+
+    <script>
+      function random_function()
+      {
+          var a=document.getElementById("input").value;
+          if(a==="commerce")
+          {
+              var arr=["select your course","BBA","B.COM"];
+          }
+          else if(a==="science")
+          {
+            var arr=["select your course","Computer science & Engineering","BSC in Computer Science","BCA"];
+          }
+          else if(a==="humanities")
+          {
+            var arr=["select your course","B.A. LLB","B.Com. LLB.","B.B.A. LLB"];
+          }
+          else if(a==="economics")
+          {
+            var arr=["select your course","CA","CMA","CFA"];
+          }
+
+          var string="";
+
+          for(i=0;i<arr.length;i++)
+          {
+              string=string+"<option value="+arr[i]+">"+arr[i]+"</option>";
+          }
+          document.getElementById("output").innerHTML=string;
+      }
+  </script>
+
+      <script>
+function clicked(e)
+{
+    if(!confirm('Order Confirmed')) {
+        e.preventDefault();
+    }
+}
+</script>
+
+
+
+
+  </head>
+  <body>
+
+    <header role="banner">
+
+      <nav class="navbar navbar-expand-md navbar-dark bg-light">
+        <div class="container">
+          <a class="navbar-brand absolute" href="index.html">SMARTIOUS SCHOOL</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample05" aria-controls="navbarsExample05" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse navbar-light" id="navbarsExample05">
+            <ul class="navbar-nav mx-auto">
+
+
+
+
+            </ul>
+             <ul class="navbar-nav absolute-right">
+                   {% if user.is_authenticated %}
+                 <li class="nav-item">
+                <a href="#" class="nav-link">Hello {{user.username}}</a>
+              </li>
+              <li class="nav-item">
+                <a href="http://127.0.0.1:8000/" class="nav-link">Logout</a>
+              </li>
+
+                 {% endif %}
+            </ul>
+
+          </div>
+        </div>
+      </nav>
+    </header>
+    <!-- END header -->
+
+    <section class="site-hero site-hero-innerpage overlay" data-stellar-background-ratio="0.5" style="background-image: url({% static 'images/pic3.jpg' %});">
+      <div class="container">
+        <div class="row align-items-center site-hero-inner justify-content-center">
+          <div class="col-md-8 text-center">
+
+            <div class="mb-5 element-animate">
+              <h1>Everything is Here...</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- END section -->
+
+
+    <section class="site-section bg-light">
+      <div class="container">
+          <h1 style=text-align:center>Let's Choose Your Order</h1>
+          <br>
+          <br>
+    <form>
+    {% csrf_token %}
+        <table>
+            <tr>
+                <td>
+                    Name:
+                </td>
+                <td>
+                    <input type="text" placeholder="Name" name="">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Phone Number:
+                </td>
+                <td>
+                    <input type="phone" placeholder="9867******">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Email Id:
+                </td>
+                <td>
+                    <input type="email" placeholder="example1@*8">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Date of Birth:
+                </td>
+                <td>
+                    <input type="date">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Age:
+                </td>
+                <td>
+                    <input type="phone" placeholder="Age">
+                </td>
+            </tr>
+        <tr>
+            <td>
+                Gender:
+            </td>
+            <td>
+                <input type="radio" name="gender">Male
+                <input type="radio" name="gender">Female
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                Address:
+            </td>
+            <td>
+                <textarea rows="5" col="17" placeholder="Address"></textarea>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                Department:
+            </td>
+            <td>
+                <select id="input" onchange="random_function()">
+                    <option>select option</option>
+                    <option>commerce</option>
+                    <option>science</option>
+                    <option>humanities</option>
+                    <option>economics</option>
+                </select>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                Courses:
+            </td>
+            <td>
+                <select id="output" onchange="random_function1()"></select>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                Purpose:
+            </td>
+            <td>
+                <select>
+                    <option>Select Option</option>
+                    <option>Enquiry</option>
+                    <option>Place Order</option>
+                    <option>Return</option>
+                </select>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                Materials provide :
+            </td>
+            <td>
+                <input type="checkbox"singing>Debit Notebook
+                <br>
+                <input type="checkbox"Dancing>Pen
+                <br>
+                <input type="checkbox"playing>Exam Papers
+                <br>
+                <input type="checkbox"playing>Study Materials
+                <br>
+                <input type="checkbox"playing>Text Books
+                <br>
+                <input type="checkbox"playing>Accessories
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+               <input type="submit" onclick="clicked(event)" />
+            </td>
+
+        </tr>
+             <p class="text-center">
+                    <b>Click</b>
+                    <a href="http://127.0.0.1:8000/credentials/register"><b>here</b></a>
+                    <b>Back to Home</b>
+           </p>-
+        </table>
+    </form>
+
+      </div>
+    </section>
+    <!-- END section -->
+
+
+     <footer class="site-footer" style="background-image: url({% static 'images/big_image_3.jpg' %});">
+      <div class="container">
+        <div class="row mb-5">
+          <div class="col-md-4">
+            <h3>About</h3>
+            <p>Transparency is more than a buzzword—it’s one of our core values. It enables us to share results and adjust accordingly. Real-time data informs our strategy. Knowing when something is not achieving the desired results allows us to pivot and build upon successful outcomes.</p>
+          </div>
+          <div class="col-md-6 ml-auto">
+            <div class="row">
+
+
+              <div class="col-md-4">
+                <ul class="list-unstyled">
+                  <li><a href="#">About Us</a></li>
+                  <li><a href="#">Company</a></li>
+                  <li><a href="#">Teachers</a></li>
+                  <li><a href="#">Courses</a></li>
+                  <li><a href="#">Categories</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+Copyright &copy;<script src="{% static 'document.write(new Date().getFullYear());' %}"></script> All rights reserved | ABY OMMEN PANICKER <i class="fa fa-heart-o" aria-hidden="true"></i>
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- END footer -->
+
+    <!-- loader -->
+    <div id="loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#f4b214"/></svg></div>
+
+    <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+    <script src="{% static 'js/jquery-migrate-3.0.0.js' %}"></script>
+    <script src="{% static 'js/popper.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'js/jquery.waypoints.min.js' %}"></script>
+    <script src="{% static 'js/jquery.stellar.min.js' %}"></script>
+
+
+    <script src="{% static 'js/main.js' %}"></script>
+
+
+    <script src="{% static 'https://code.jquery.com/jquery-3.6.3.js' %}" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
+
+    <script src="{% static 'https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.js' %}"></script>
+    <script src="{% static 'script.js' %}"></script>
+
+  </body>
+</html>
